@@ -1,23 +1,20 @@
-# Use the official Python image from the Docker Hub
-FROM python:3.11-slim
+# Use an official Python image as a base
+FROM python:3.9-slim
 
-# Set the working directory
+# Set the working directory to /app
 WORKDIR /app
 
-# Copy the requirements.txt file
+# Copy the requirements file
 COPY requirements.txt .
 
 # Install the dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application code
+# Copy the application code
 COPY . .
 
-# Set environment variables
-ENV PYTHONUNBUFFERED=1
-
 # Expose the port
-EXPOSE 8080
+EXPOSE 80
 
-# Command to run the bot
+# Run the command to start the bot
 CMD ["python", "main.py"]
