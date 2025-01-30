@@ -102,19 +102,4 @@ async def main():
             tasks.append(asyncio.create_task(forward_messages(group)))
         await asyncio.gather(*tasks)
 
-async def handle_webhook(websocket, path):
-    async for message in websocket:
-        # Handle incoming webhook request
-        print(f"Received webhook request: {message}")
-
-async def webhook_server():
-    async with websockets.serve(handle_webhook, "0.0.0.0", 8080):
-        print("Webhook server started on port 8080")
-        await asyncio.Future()  # run forever
-
-async def main():
-    await asyncio.sleep(5)
-    await app.start()
-
 asyncio.run(main())
-asyncio.run(webhook_server())
