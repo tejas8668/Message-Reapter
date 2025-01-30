@@ -4,3 +4,4 @@ python-dotenv==0.20.0
 pymongo[srv]==4.2.0
 requests==2.25.1
 pyrogram
+python-telegram-bot
