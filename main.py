@@ -113,6 +113,7 @@ async def webhook_server():
         await asyncio.Future()  # run forever
 
 async def main():
+    await asyncio.sleep(5)
     await app.start()
 
 asyncio.run(main())
