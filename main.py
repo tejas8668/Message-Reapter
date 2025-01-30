@@ -87,7 +87,7 @@ async def forward_messages(group):
         await asyncio.sleep(REPEAT_TIME)  # Wait for REPEAT_TIME before next batch
 
 # Webhook configuration
-WEBHOOK_URL = "https://example.com/webhook"
+WEBHOOK_URL = "https://independent-lorie-tej-b7ebf289.koyeb.app/"
 WEBHOOK_PORT = 8080
 
 # Start bot and scheduler
