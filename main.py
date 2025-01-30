@@ -38,7 +38,8 @@ for group, config in CHANNELS.items():
     for source in config["sources"]:
         message_queues[group][source] = deque(maxlen=MAX_QUEUE_SIZE)
 
-app = Client("loop_forwarder", api_id, api_hash, bot_token=bot_token, ping_interval=60)
+app = Client("loop_forwarder", api_id, api_hash, bot_token=bot_token)
+
 # Event handler to store messages from source channels
 @app.on_message(filters.chat([channel for config in CHANNELS.values() for channel in config["sources"]]))
 async def collect_messages(client, message):
@@ -86,7 +87,7 @@ async def forward_messages(group):
         await asyncio.sleep(REPEAT_TIME)  # Wait for REPEAT_TIME before next batch
 
 # Webhook configuration
-WEBHOOK_URL = "https://independent-lorie-tej-b7ebf289.koyeb.app/"
+WEBHOOK_URL = "https://example.com/webhook"
 WEBHOOK_PORT = 8080
 
 # Start bot and scheduler
@@ -110,6 +111,9 @@ async def webhook_server():
     async with websockets.serve(handle_webhook, "0.0.0.0", 8080):
         print("Webhook server started on port 8080")
         await asyncio.Future()  # run forever
+
+async def main():
+    await app.start()
 
 asyncio.run(main())
 asyncio.run(webhook_server())
