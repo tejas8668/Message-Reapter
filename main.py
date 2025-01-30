@@ -38,8 +38,7 @@ for group, config in CHANNELS.items():
     for source in config["sources"]:
         message_queues[group][source] = deque(maxlen=MAX_QUEUE_SIZE)
 
-app = Client("loop_forwarder", api_id, api_hash, bot_token=bot_token, start_timeout=30)
-
+app = Client("loop_forwarder", api_id, api_hash, bot_token=bot_token)
 # Event handler to store messages from source channels
 @app.on_message(filters.chat([channel for config in CHANNELS.values() for channel in config["sources"]]))
 async def collect_messages(client, message):
